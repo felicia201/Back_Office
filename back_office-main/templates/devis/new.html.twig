@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Devis{% endblock %}
+
+{% block body %}
+<<<<<<< HEAD
+    <h1>Créer un nouveau devis</h1>
+=======
+    <h1>Create new Devis</h1>
+    
+    <style>
+        * {
+            margin: 0;
+            background-color: var(--second-color);
+            color: var(--main-color);
+            font-family: 'PoliceContenu';
+        }
+
+        :root {
+            --main-color: black;
+            --second-color: white;
+            --background: #eedccf;
+            --link-color: #8a7667;
+            --third-color: #fff7b6;
+        }
+
+        h1 {
+            font-family: 'PoliceTitre';
+            color: var(--main-color);
+            font-size: 50px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+            font-family: 'PoliceContenu';
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+>>>>>>> c9efc6882401767082d590c8cec801e586aef243
+
+    {{ include('devis/_form.html.twig') }}
+
+    <a href="{{ path('app_devis_index') }}">Retour à la liste</a>
+{% endblock %}

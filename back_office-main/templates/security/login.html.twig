@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Connexion !
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+{% include 'headers/user.html.twig' %}
+
+<style>
+
+:root{
+    --main-color : black;
+    --second-color : white; 
+    --background : #eedccf;
+    --link-color:(138, 118, 103)edccf;
+    --third-color : #fff7b6;
+}
+
+@font-face {
+    font-family: 'PoliceTitre';
+    src: url(/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'PoliceContenu';
+    src: url(/src/Css/Akkurat.ttf);
+}
+.container{
+    background-color: var(--background);
+}
+html{
+    margin: 0;
+    background-color: var(--background);
+    color: var(--main-color);
+    font-family: 'PoliceContenu';
+}
+       form {
+            background-color: var(--second-color);
+            justify-content: center;
+            margin-top: 50px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'PoliceContenu';
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+    .btn {
+        font-family: 'PoliceContenu';
+        border: none;
+        padding: 10px;
+        background-color: var(--main-color);
+        color: var(--second-color);
+        border-radius: 5px;
+        }
+
+    .btn:hover {
+        background-color: var(--background);
+        color: var(--main-color);
+        }
+
+        .alert {
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            font-size: 16px;
+        }
+
+        a{
+    color: var(--link-color);
+}
+    </style>
+    <div class="container">
+        <form class="mt-5" style="max-width: 400px;" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+            <a class="mt-2 d-block" href="{{ path('app_register') }}">Vous n'avez pas de compte ? S'inscrire</a>
+            <a class="mt-2 d-block" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <style>
+
+:root{
+    --main-color : black;
+    --second-color : white; 
+    --background : #eedccf;
+    --link-color:(138, 118, 103)edccf;
+    --third-color : #fff7b6;
+}
+@font-face {
+    font-family: 'PoliceTitre';
+    src: url('src/Css/Montserrat-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'PoliceContenu';
+    src: url('src/Css/Akkurat.ttf');
+}
+.container{
+    background-color: var(--background);
+}
+
+h1{
+    font-family: 'PoliceTitre';
+    color: var(--main-color);
+    font-size : 50px;
+    text-align: center;
+}
+
+html{
+    margin: 0;
+    background-color: var(--background);
+    color: var(--main-color);
+    font-family: 'PoliceContenu';
+}
+       form {
+    
+            background-color: var(--second-color);
+            justify-content: center;
+            margin-top: 70px;
+            padding: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'PoliceContenu';
+        }
+
+    .btn {
+        font-family: 'PoliceContenu';
+        border: none;
+        padding: 10px;
+        background-color: var(--main-color);
+        color: var(--second-color);
+        border-radius: 5px;
+        }
+
+    .btn:hover {
+        background-color: var(--background);
+        color: var(--main-color);
+        }
+
+        .alert {
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            font-size: 16px;
+        }
+input {
+    width : 500px; 
+    height : 30px;
+    border : solid 1px grey;
+    border-radius : 5px;
+}
+        a{
+    color: var(--link-color);
+}
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5">Inscription</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.firstName) }}
+    {{ form_row(registrationForm.lastName) }}
+
+    {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe',
+            attr: {
+                'pattern': '.{6,}',
+                'title': 'Le mot de passe doit faire au moins 6 caractères'
+            }
+        }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+
+    <button type="submit" class="btn">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+    <a href="{{ path('app_login') }}">Déjà inscrit ? Se connecter</a>
+{% endblock %}

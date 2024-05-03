@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    :root{
+    --main-color : black;
+    --second-color : white; 
+    --background : #eedccf;
+    --link-color:(138, 118, 103)edccf;
+    --third-color : #fff7b6;
+}
+
+@font-face {
+    font-family: 'PoliceTitre';
+    src: url(/back_office/src/Css/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'PoliceContenu';
+    src: url(/back_office/src/Css/Akkurat.ttf);
+}
+
+
+h1{
+    font-family: 'PoliceTitre';
+    color: var(--main-color);
+    font-size : 50px;
+    text-align: center;
+}
+
+        header {
+
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+  
+  {% include 'headers/user.html.twig' %}
+   
+
+
+    
+
+
+    <div class="example-wrapper">
+        <h1>page d'Accueil</h1>
+        {% if app.user %}
+            utilisateur connecté
+        {% else %}
+            l'utilisateur n'est pas connecté
+        {% endif %}
+    </div>
+{% endblock %}
+

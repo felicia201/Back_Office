@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis{% endblock %}
+
+{% block body %}
+    <h1>Devis</h1>
+    
+    <style>
+        * {
+            margin: 0;
+            background-color: var(--second-color);
+            color: var(--main-color);
+            font-family: 'PoliceContenu';
+        }
+
+        :root {
+            --main-color: black;
+            --second-color: white;
+            --background: #eedccf;
+            --link-color: #8a7667;
+            --third-color: #fff7b6;
+        }
+
+        h1 {
+            font-family: 'PoliceTitre';
+            color: var(--main-color);
+            font-size: 50px;
+            text-align: center;
+        }
+
+        table {
+            margin: 20px auto;
+            width: 80%;
+            border-collapse: collapse;
+            color: var(--color);
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid var(--background);
+            font-family: 'PoliceContenu';
+        }
+
+        th {
+            background-color: var(--background);
+            color: var(--second-color);
+            font-family: 'PoliceTitre';
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--background);
+        }
+
+        td a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            background-color: var(--background);
+            color: var(--second-color);
+            border: 1px solid var(--background);
+            padding: 8px 16px;
+            text-decoration: none;
+            font-family: 'PoliceContenu';
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--second-color);
+            color: var(--background);
+        }
+    </style>
+    
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devi.id }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ devi.reference }}</td>
+            </tr>
+            <tr>
+                <th>Client_nom</th>
+                <td>{{ devi.clientNom }}</td>
+            </tr>
+            <tr>
+                <th>Client_adresse</th>
+                <td>{{ devi.clientAdresse }}</td>
+            </tr>
+            <tr>
+                <th>Client_email</th>
+                <td>{{ devi.clientEmail }}</td>
+            </tr>
+            <tr>
+                <th>Date_devis</th>
+                <td>{{ devi.dateDevis ? devi.dateDevis|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Montant_total</th>
+                <td>{{ devi.montantTotal }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ devi.description }}</td>
+            </tr>
+            <tr>
+                <th>Duree_validite</th>
+                <td>{{ devi.dureeValidite }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ devi.statut }}</td>
+            </tr>
+            <tr>
+                <th>Termes_conditions</th>
+                <td>{{ devi.termesConditions }}</td>
+            </tr>
+            <tr>
+                <th>Informations_supplementaires</th>
+                <td>{{ devi.informationsSupplementaires }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devis_index') }}">retour à la liste</a>
+
+    <a href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
+
+    {{ include('devis/_delete_form.html.twig') }}
+
+
+    <a href="{{ path('download_pdf_devis', {'id': devi.id}) }}">Télécharger PDF</a>
+    
+{% endblock %}

@@ -1,0 +1,13 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+    
+download_pdf_devis:
+    path: '/download-pdf/{id}'
+    controller: 'App\Controller\DevisController::downloadPdf'
+    methods: ['GET']
+
+
+# index:
+#     path: /
+#     controller: App\Controller\AuthController::login
